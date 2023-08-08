@@ -13,6 +13,7 @@ const container = document.getElementById("container"); // "Traemos" utilizando 
 function showData(dataArray) {
   // El for itera sobre los elementos del array
   for (const item of dataArray) {
+    
     // En la siguiente línea se utilizan "backticks" para armar el String. Más info => https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
@@ -22,19 +23,23 @@ function showData(dataArray) {
 fetch(DATA_URL)
 .then (response => response.json())
 .then (data => {
- const students = data.students;
- students.forEach(student => {
-const fullName = `${student.name} ${student.lastname}`;
-const p = document.createElement("p");
-p.textContent = fullName;
-container.appendChild(p);
-console.log(student.name, student.lastname);
+  showData(data.students);
+
+  // ******************************** segunda forma de resolver el ejercicio ********************************
+// ----------------------------------------------------------------
+//   const students = data.students;
+//  students.forEach(student => {
+// const fullName = `${student.name} ${student.lastname}`;
+// const p = document.createElement("p");
+// p.textContent = fullName;
+// container.appendChild(p);
+// ----------------------------------------------------------------
 
 
 
- });
+ })
 
-})
+// })
 
 .catch (error => { 
   console.error("Error al cargar datos", error);
